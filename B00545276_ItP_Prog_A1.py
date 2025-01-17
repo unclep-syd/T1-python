@@ -66,7 +66,7 @@ def register_menu():
         start_menu()
 
 
-    fullDOB = (dayOfBirth[0:3] + "/" + monthOfBirth[0:3] + "/" yearOfBirth[0:5])
+    fullDOB = (dayOfBirth[0:3] + "/" + monthOfBirth[0:3] + "/"  + yearOfBirth[0:5])
     userName = (foreName[0:3] + surName[0:3] + dayOfBirth[0:2] + monthOfBirth[0:2])
     
     print ("Your username is - ", userName)
