@@ -1,7 +1,11 @@
 # Intro to Programming Assessment 1 B00545276
 
+#Imports pickle in order to save user info
 import pickle
-
+#imports os to clear terminal for better user usability
+import os
+#imports sleep function
+from time import sleep
 
 #Pickle Load and Display User Data
 def admin_printUsers():
@@ -38,10 +42,14 @@ def start_menu():
 #Login Menu
 def login_menu():
     print ("Login: ")
-    
+  
+    username_atempt = str (input ("Username: "))
+    #validate against pickle usernames
+    #if statement to promt continue  
 
 #Register Menu
 def register_menu():
+    os.system('cls')
     print ("Register:")
     print ("Enter 'x' to return to main menu")
     
@@ -68,18 +76,27 @@ def register_menu():
 
     fullDOB = (dayOfBirth[0:3] + "/" + monthOfBirth[0:3] + "/"  + yearOfBirth[0:5])
     userName = (foreName[0:3] + surName[0:3] + dayOfBirth[0:2] + monthOfBirth[0:2])
+
+    sleep(2)
     
     print ("Your username is - ", userName)
     print ("Enter your desired username. It must be 6-12 characters and have at least 1 uppercase letter, 1 lowercase letter and 1 number.")
     user_password = str (input("Password >>>"))
 
     userInfo = [foreName, surName, fullDOB, userName]
-    
+
+    #replace with pickle dump
     return userInfo
 
+    reg_completeInput = str (input ("You are now registered. Enter any key to return to main menu."))
+    if reg_completeInput == ("x"):
+        start_menu()
+    else:
+        start_menu()
 
 #Admin Login
 def admin_login():
+    os.system('cls')
     print ("Admin Login:")
     admin_user = str (input ("Admin username: "))
     admin_pass = str (input ("Admin password: "))
@@ -92,6 +109,7 @@ def admin_login():
 
 #Admin Menu
 def admin_menu():
+    os.system('cls')
     print ("Admin Menu: ")
     print ("(1) - Display Registered Users")
     print ("(x) - Return")
