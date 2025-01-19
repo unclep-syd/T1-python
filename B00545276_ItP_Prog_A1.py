@@ -14,7 +14,9 @@ def admin_printUsers():
     print ("Registered Users: ", admin_printUsersData) 
 
 #Pickle Dump
-
+def userInfo_dump(userInfo):
+    with open('B00545276_ItP_Prog_A1.pkl', 'wb') as file:
+        pickle.dump(userInfo, file, protocol=pickle.HIGHEST_PROTOCOL)
 
 #Initial start menu
 def start_menu():
@@ -38,14 +40,51 @@ def start_menu():
     else:
         print ("Enter one of the avaliable options")
         start_menu() 
+start_menu
 
 #Login Menu
 def login_menu():
     print ("Login: ")
-  
-    username_atempt = str (input ("Username: "))
-    #validate against pickle usernames
-    #if statement to promt continue  
+
+    #sets varibles to count login attempts
+    un_counter = 0
+    pw_counter = 0
+    username_attempt = ''
+    password_attempt = ''
+
+    if un_counter < 3:
+        while True:
+            username_attempt = str (input("Username: "))
+
+            with open('B00545276_ItP_Prog_A1.pkl', 'rb') as file:
+                username_scan = pickle.load(file)
+            
+            if username_attempt != username_scan[3]:
+                un_counter = un_counter + 1
+                continue
+            else:
+                if pw_counter < 3:
+                    while True:
+                        password_attempt = str (input("Password: "))
+
+                        with open('B00545276_ItP_Prog_A1.pkl', 'rb') as file:
+                            password_scan = pickle.load(file)
+
+                        if password_attempt != password_scan[4]:
+                            pw_counter = pw_counter + 1
+                            continue
+                        else:
+                            os.system('cls')
+                            sleep(2)
+                            print ("You are logged in as ", password_attempt)
+                            break
+        
+    else:
+        #error message then returned to main menu
+        os.system('cls')
+        print ("You have been locked out for entering too many incorrect details.")
+        sleep(5)
+        start_menu()
 
 #Register Menu
 def register_menu():
@@ -84,15 +123,10 @@ def register_menu():
     user_password = str (input("Password >>>"))
 
     userInfo = [foreName, surName, fullDOB, userName]
-
-    #replace with pickle dump
+    print ("You are now registered")
     return userInfo
+start_menu
 
-    reg_completeInput = str (input ("You are now registered. Enter any key to return to main menu."))
-    if reg_completeInput == ("x"):
-        start_menu()
-    else:
-        start_menu()
 
 #Admin Login
 def admin_login():
