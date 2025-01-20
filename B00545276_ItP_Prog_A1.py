@@ -40,7 +40,6 @@ def start_menu():
     else:
         print ("Enter one of the avaliable options")
         start_menu() 
-start_menu
 
 #Login Menu
 def login_menu():
@@ -158,4 +157,13 @@ def admin_menu():
         print ("Enter an avaliable menu option")
         admin_menu()
 
-#Close Function
+# Close Function
+def close():
+    print("Exiting the program...")
+    exit()
+
+# start of the program
+
+start_menu()
+
+#clears terminal
